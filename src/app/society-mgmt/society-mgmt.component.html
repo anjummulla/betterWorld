@@ -1,0 +1,24 @@
+<div class="container mainContainer h-100">
+  <app-society-header></app-society-header>
+  <div class="row">
+    <div class="col-sm-12 text-center contentContainer">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 text-center contentContainer">
+          <a routerLink="/societyManagment/society" class="btn btn-outline-warning homeicons w-100">Society</a>
+        </div>
+        <div class="col-xs-12 col-sm-3 text-center contentContainer">
+          <a href="javascript:void(0)"  data-toggle="modal" data-target="#myModal" (click)="ShowModal('society')" class="btn btn-outline-warning homeicons w-100">Buildings</a>
+        </div>
+        <div class="col-xs-12 col-sm-3 text-center contentContainer">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" (click)="ShowModal('buildings')"  class="btn btn-outline-danger homeicons w-100">Flats</a>
+        </div>
+        <div class="col-xs-12 col-sm-3 text-center contentContainer">
+          <a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" (click)="ShowModal('flats')" class="btn btn-outline-danger homeicons w-100"> owners</a>
+        </div>
+      </div>
+      <app-modal [modalName]="modalVar"></app-modal>
+      <router-outlet></router-outlet>
+      
+    </div>
+  </div>
+</div>

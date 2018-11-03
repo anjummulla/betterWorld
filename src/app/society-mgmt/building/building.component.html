@@ -1,0 +1,30 @@
+
+<div class="row" *ngIf="societyInfo">
+    <div class="col-xs-12 col-sm-12 text-left contentContainer">    
+        Society ID:  {{societyInfo && societyInfo[0]?.societyid}} <BR>
+      Society Name: {{societyInfo && societyInfo[0]?.societyname}}<br>
+      Society Address: {{societyInfo && societyInfo[0]?.address}},{{societyInfo && societyInfo[0]?.pincode}}<br>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 text-center contentContainer">
+      
+      <table class="table">
+          <thead>
+            <tr>
+              <th>buildingid</th>
+              <th>buildingname</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr (click)="onSelect(building)" *ngFor="let building of buildingList">
+              <td>{{building.buildingid}}</td>
+              <td>{{building.buildingname}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+<div *ngFor="">
+    {{building | json}}
+</div>

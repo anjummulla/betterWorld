@@ -1,0 +1,55 @@
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <!-- <div *ngIf="modalName == 'society'">
+          <select name="socId">
+            <option>Select Society from list</option>
+            <option *ngFor="let s of society" value="{{s.societyid}}">{{s.societyname}}</option>
+          </select>
+        </div> -->
+        <!-- <div *ngIf="modalName == 'buildings'">
+          <select name="society" (change)="onSocietyChange($event.target.value)">
+            <option>Select Society from list</option>
+            <option *ngFor="let s of society" value="{{s.societyid}}">{{s.societyname}}</option>
+          </select>
+          <select name="building">
+            <option>Select Buildings from list</option>
+            <option *ngFor="let building of buildingList" value="{{building.buildingid}}">{{building.buildingname}}</option>
+          </select>
+        </div> -->
+        <div>
+          <select *ngIf="(modalName == 'flats' || modalName == 'buildings' || modalName == 'society')" name="society" [(ngModel)]="sid" (change)="onSocietyChange($event.target.value)">
+            
+            <option>Select Society from list</option>
+            <option *ngFor="let s of society" value="{{s.societyid}}">{{s.societyname}}</option>
+          </select>
+          <select *ngIf="(modalName == 'flats' || modalName == 'buildings')"  [(ngModel)]="bid" name="building" (change)="onBuildingChange($event.target.value)">
+            <option>Select Buildings from list</option>
+            <option *ngFor="let building of buildingList" value="{{building.buildingname}}">{{building.buildingname}}</option>
+          </select>
+          <select name="flats" *ngIf="modalName == 'flats'">
+              <option>Select Flats from list</option>
+              <option *ngFor="let flat of flatList" value="{{flat.flatid}}">{{flat.flatname}}</option>
+            </select>
+        </div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()" data-dismiss="modal">Submit</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<!-- main app container -->
+
+<div class="container">
+    <div class="row mainContainer">
+        <div class="d-none d-sm-block col-sm-8 align-self-center text-center">
+            <h4>Lorem Ipsum</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <img src="assets/login-detail.jpg" class="img-fluid" />
+        </div>
+        <div class="col-xs-12 col-sm-4 align-self-top">
+            <br> <br>
+            <div class="loginBox">
+                <h4 class=" text-center">Member login</h4>
+                <br>
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="uname" placeholder="User Name" [(ngModel)]="model.uname" #uname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && uname.invalid }"
+                            required />
+                        <div *ngIf="f.submitted && uname.invalid" class="invalid-feedback">
+                            <div *ngIf="uname.errors.required">username is required</div>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel"
+                            [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required />
+                        <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                            <div *ngIf="password.errors.required">password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-primary">Login</button>
+                    </div>
+                    <div class="form-group text-center">
+                        <a routerLink="/register" class="btn btn-link">Not a member? Sign up</a>
+                    </div>
+                </form>
+            </div>
+            <br> <br>
+        </div>
+        
+    </div>
+</div>

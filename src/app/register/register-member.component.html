@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row justify-content-center mainContainer">
+      <div class="col-xs-12 col-md-8 col-lg-8 col-xl-8">
+        <div class="row">
+          <div class="col text-left">
+            <a routerLink="/home" class="btn btn-link">Back</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <h1>{{pageTitle}}</h1>
+            <p class="text-h3">{{pageDesc}}</p>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                  <div class="form-group">
+                      <input type="number" class="form-control" name="flatnum" placeholder="{{formLabelNames.flatno}}" [(ngModel)]="model.flatnum" #flatnum="ngModel" [ngClass]="{ 'is-invalid': f.submitted && flatnum.invalid }" required />
+                      <div *ngIf="f.submitted && flatnum.invalid" class="invalid-feedback">
+                          <div *ngIf="flatnum.errors.required">Flat Number is required</div>
+                      </div>
+                  </div>
+                  <div class="form-row mb-4">
+                      <div class="col">
+                          <input type="text" class="form-control" name="fname" placeholder="{{formLabelNames.ownerFname}}" [(ngModel)]="model.fname" #fname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && fname.invalid }" required />
+                          <div *ngIf="f.submitted && fname.invalid" class="invalid-feedback">
+                              <div *ngIf="fname.errors.required">Owner First name is required</div>
+                          </div>
+                      </div>
+                      <div class="col">
+                          <div class="form-group">
+                              <input type="text" class="form-control" name="lname" placeholder="{{formLabelNames.ownerLname}}" [(ngModel)]="model.lname" #lname="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lname.invalid }" required />
+                              <div *ngIf="f.submitted && lname.invalid" class="invalid-feedback">
+                                <div *ngIf="lname.errors.required">Owner Last name is required</div>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="phone" placeholder="{{formLabelNames.phone}}" [(ngModel)]="model.phone" #phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required/>
+                    <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
+                      <div *ngIf="phone.errors.required">Phone number is required</div>
+                      <div *ngIf="phone.errors.number">Phone number is number</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <input type="email" class="form-control" name="paymentamount" placeholder="{{formLabelNames.paymentamount}}" [(ngModel)]="model.paymentamount" #paymentamount="ngModel" [ngClass]="{ 'is-invalid': f.submitted && paymentamount.invalid }" required />
+                      <div *ngIf="f.submitted && paymentamount.invalid" class="invalid-feedback">
+                        <div *ngIf="paymentamount.errors.required">payment amount is required</div>
+                      </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label for="paymentmethod">{{formLabelNames.paymentmethod}}</label><br>
+                            
+                            <div class="form-check">
+                              <label class="form-check-label" for="cash">
+                                <input type="checkbox" [(ngModel)]="model.paymentmethod" #paymentmethod="ngModel" id="cash" class="form-check-input" name="paymentmethod" value="{{formLabelNames.paymentmethodValue[0]}}" checked>{{formLabelNames.paymentmethodValue[0]}}
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label" for="card">
+                                <input type="checkbox" class="form-check-input" id="card" name="paymentmethod" value="{{formLabelNames.paymentmethodValue[1]}}" (click)="clickCard()">{{formLabelNames.paymentmethodValue[1]}}
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" value="{{formLabelNames.paymentmethodValue[2]}}">{{formLabelNames.paymentmethodValue[2]}}
+                              </label>
+                            </div>
+                        </div>
+                        <div class="col" *ngIf="Debitcard">                          
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="paymentamount" placeholder="card number">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="paymentamount" placeholder="name on card">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="col">
+                            <label>{{formLabelNames.flatrented}}</label>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio" (change)="radioChange($event)" value="{{formLabelNames.rentedYes}}">{{formLabelNames.rentedYes}}
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="radio" class="form-check-input" name="optradio" (change)="radioChange($event)" value="{{formLabelNames.rentedNo}}">{{formLabelNames.rentedNo}}
+                              </label>
+                            </div>
+                        </div>
+                        <div class="col" *ngIf="tenantDetails" >
+                            <div class="form-group" >
+                                  <input type="text" class="form-control" id="paymentamount" placeholder="Tenant Name">
+                             </div>
+                             <div class="form-group">
+                                  <input type="text" class="form-control" id="paymentamount" placeholder="Tenant Contact">
+                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="{{formLabelNames.memPswd}}" name="password" [(ngModel)]="model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required />
+                        <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                            <div *ngIf="password.errors.required">{{formLabelNames.memPswd}} is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="{{formLabelNames.memConfrmPswd}}" name="confirmpassword" [(ngModel)]="model.confirmpassword" #confirmpassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmpassword.invalid }" required />
+                        <div *ngIf="f.submitted && confirmpassword.invalid" class="invalid-feedback">
+                            <div *ngIf="confirmpassword.errors.required">Confirm password is required</div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-primary btn-lg">Register</button>
+                    </div>
+                </form>         
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
